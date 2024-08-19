@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '1.View/1.1.Login/LoginView.dart';
+import 'package:mygesture/1.View/1.3.Cash/Widget/Grafico.dart';
 
 void main() => runApp(MyApp());
 
@@ -17,27 +19,27 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // A widget which will be started on application startup
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: LoginView(), //MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  final String title;
-  const MyHomePage({super.key, required this.title});  
+// class MyHomePage extends StatelessWidget {
+//   final String title;
+//   const MyHomePage({super.key, required this.title});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        // The title text which will be shown on the action bar
-        title: Text(title),
-      ),
-      body: Center(
-        child: Text(
-          'Hello, World!',
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         // The title text which will be shown on the action bar
+//         title: Text(title),
+//       ),
+//       body: Center(
+//         child: Text(
+//           'Hello, World!',
+//         ),
+//       ),
+//     );
+//   }
+// }
