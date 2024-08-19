@@ -5,9 +5,11 @@ import 'package:mygesture/0.Class/0.2.Struct/ColorsCustom.dart';
 class TextTitle extends StatelessWidget {
   String title;
   Color color;
+  double size;
 
-  TextTitle({required this.title, Color? color})
-      : this.color = color ?? titleColor;
+  TextTitle({required this.title, Color? color, double? size})
+      : this.color = color ?? titleColor,
+        this.size = size ?? 22.77;
 
   @override
   Widget build(BuildContext context) {

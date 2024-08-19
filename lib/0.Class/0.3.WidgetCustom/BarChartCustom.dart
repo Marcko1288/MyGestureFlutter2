@@ -94,3 +94,32 @@ class BarChartCustom extends StatelessWidget {
     );
   }
 }
+
+List<BarChartGroupData> createBarChart<T>({
+  required Map<int, T> mapData,
+  required double Function(T element)
+      getValue, // Funzione per estrarre il valore dal campo dell'oggetto
+  Color barColorP = Colors.blue, // Colore di default delle barre
+  Color barColorN = Colors.red, // Colore di default delle barre
+  double barWidth = 10, // Larghezza di default delle barre
+}) {
+  List<BarChartGroupData> arrayBar = [];
+
+  mapData.forEach((key, value) {
+    Color color = getValue(value) > 0.0 ? barColorP : barColorN;
+    arrayBar.add(BarChartGroupData(
+      x: key,
+      barRods: [
+        BarChartRodData(
+          y: getValue(
+              value), // Usa la funzione getValue per ottenere il campo desiderato
+          colors: [color],
+          width: barWidth,
+        ),
+      ],
+      showingTooltipIndicators: [0],
+    ));
+  });
+
+  return arrayBar;
+}

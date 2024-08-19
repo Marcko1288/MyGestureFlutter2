@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:mygesture/0.Class/0.1.Element/Cash.dart';
-import 'package:fl_chart/fl_chart.dart';
-import 'package:intl/intl.dart';
-import 'package:mygesture/0.Class/0.2.Struct/ColorsCustom.dart';
 import 'package:mygesture/0.Class/0.2.Struct/Es_Array.dart';
 import 'package:mygesture/0.Class/0.2.Struct/SizeConfig.dart';
-import 'package:mygesture/0.Class/0.3.WidgetCustom/BarChartCustom.dart';
+import 'package:mygesture/0.Class/0.3.WidgetCustom/LoadView.dart';
+import 'package:mygesture/0.Class/0.3.WidgetCustom/ErrorDLView.dart';
 import 'package:mygesture/0.Class/0.3.WidgetCustom/CardBox.dart';
-import 'package:mygesture/1.View/1.3.Cash/Widget/Grafico.dart';
-import 'package:flutterlibrary/Function/Func_MinMaxObject.dart';
-import 'package:flutterlibrary/Function/Func_JumpYAss.dart';
-import 'package:flutterlibrary/Extension/Extension_Date.dart';
-import 'package:flutterlibrary/Extension/Extension_Double.dart';
 import 'package:flutterlibrary/Extension/Extension_List.dart';
 import 'package:flutterlibrary/Enum/Enum_TypeSort.dart';
+import 'package:mygesture/1.View/1.3.Cash/Widget/grafic_total_mese.dart';
 
 class BoxGraficMounth extends StatefulWidget {
   const BoxGraficMounth({Key? key}) : super(key: key);
@@ -34,72 +28,18 @@ class _BoxGraficMounthState extends State<BoxGraficMounth> {
             if (snapshot.hasData) {
               Map<int, Cash> map_cash = snapshot.data as Map<int, Cash>;
               if (map_cash.isNotEmpty) {
-                List<Cash> array_cash = map_cash.values.toList();
-                List<BarChartGroupData> array_date = createBarChart(map_cash);
-                List<double> valueMinMax =
-                    getMinMaxValues(array_cash, (element) => element.totale);
-                double jumpValueY =
-                    dynamicJumpYAss(array_cash, (element) => element.totale);
-                //maxY * ((maxY - minY) / maxY);
-                //dynamicJumpYAss(array_cash, (element) => element.totale);
-                double maxY = valueMinMax[1] + (jumpValueY);
-                double minY = valueMinMax[0] - (jumpValueY);
-
-                return Padding(
-                    padding: EdgeInsets.fromLTRB(
-                        SizeConfig.screenWidth! / 80.55,
-                        SizeConfig.screenHeight! / 28.3,
-                        SizeConfig.screenWidth! / 80.55,
-                        SizeConfig.screenHeight! / 54.15),
-                    child: Container(
-                        padding: EdgeInsets.all(20),
-                        height: SizeConfig.screenHeight! * 0.4,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(
-                              12), // Modifica il valore per cambiare il raggio degli angoli
-                        ),
-                        child: BarChartCustom(
-                          array_date: array_date,
-                          maxY: maxY,
-                          minY: minY,
-                          jumpValueY: jumpValueY,
-                          funcFormatY: (value) {
-                            return NumberFormat.compact().format(value);
-                          },
-                          funcFormatX: (index) {
-                            var value = map_cash[index.toInt()]?.data_valore ??
-                                DateTime.now();
-                            String assX =
-                                '${value.month.toString()}/${value.year.toString()}';
-                            return assX;
-                          },
-                          funcFormatValueAx: (value) {
-                            return value.changeDoubleToValuta();
-                          },
-                          //navigationTo: navigationTo),
-                        )));
+                Map<int, Cash> map_cash_delta = extractDelta(map_cash);
+                return Column(
+                  children: [
+                    GraficTotal(map_cash: map_cash, title: 'Totale'),
+                    GraficTotal(map_cash: map_cash_delta, title: 'Delta'),
+                  ],
+                );
               } else {
-                return Padding(
-                    padding: EdgeInsets.fromLTRB(
-                        SizeConfig.screenWidth! / 80.55,
-                        SizeConfig.screenHeight! / 28.3,
-                        SizeConfig.screenWidth! / 80.55,
-                        SizeConfig.screenHeight! / 54.15),
-                    child: Container(
-                        padding: EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(
-                              12), // Modifica il valore per cambiare il raggio degli angoli
-                        ),
-                        child: Text('Dati non disponibili')));
+                return ErrorDLView();
               }
             }
-            return Container(
-              alignment: Alignment.center,
-              child: CircularProgressIndicator(),
-            );
+            return LoadView();
           },
         ));
   }
@@ -116,22 +56,50 @@ Future<Map<int, Cash>> bringGraficMounth() async {
   return map_cash;
 }
 
-List<BarChartGroupData> createBarChart(Map<int, Cash> map_cash) {
-  List<BarChartGroupData> array_bar = [];
+Map<int, Cash> extractDelta(Map<int, Cash> map_cash) {
+  Map<int, Cash> map_cash_output = {};
+  List<Cash> array_cash = map_cash.values.toList();
 
-  map_cash.forEach((key, value) {
-    array_bar.add(BarChartGroupData(
-      x: key,
-      barRods: [
-        BarChartRodData(
-          y: value.totale,
-          colors: [barChartsColor],
-          width: 10,
-        ),
-      ],
-      showingTooltipIndicators: [0],
-    ));
-  });
+  array_cash.customSort((element) => element.data_valore, TypeSort.UP);
 
-  return array_bar;
+  double totale_old = 0.0;
+  List<Cash> array_app = [];
+  for (var i = 0; i < array_cash.length; i++) {
+    if (i == 0) {
+      totale_old = array_cash[i].totale;
+    } else {
+      var cash = Cash(
+          data_valore: array_cash[i].data_valore,
+          conto: array_cash[i].totale - totale_old);
+      array_app.add(cash);
+      totale_old = array_cash[i].totale;
+    }
+  }
+
+  array_app.customSort((element) => element.data_valore, TypeSort.DO);
+  for (var i = 0; i < array_app.length; i++) {
+    map_cash_output[i] = array_app[i];
+  }
+
+  return map_cash_output;
 }
+
+// List<BarChartGroupData> createBarChart(Map<int, Cash> map_cash) {
+//   List<BarChartGroupData> array_bar = [];
+
+//   map_cash.forEach((key, value) {
+//     array_bar.add(BarChartGroupData(
+//       x: key,
+//       barRods: [
+//         BarChartRodData(
+//           y: value.totale,
+//           colors: [barChartsColor],
+//           width: 10,
+//         ),
+//       ],
+//       showingTooltipIndicators: [0],
+//     ));
+//   });
+
+//   return array_bar;
+// }
