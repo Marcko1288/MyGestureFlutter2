@@ -18,7 +18,7 @@ class TextTitle extends StatelessWidget {
         title,
         style: TextStyle(
             color: color,
-            fontSize: SizeConfig.screenHeight! / 22.77,
+            fontSize: SizeConfig.screenHeight! / size,
             fontWeight: FontWeight.bold),
       ),
 

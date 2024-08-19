@@ -12,6 +12,7 @@ dependencies:
   uuid: ^4.2.2
   fl_chart: ^0.40.0
   intl: ^0.17.0
+  material_segmented_control: ^5.0.1
 
   # Aggiungi qui la tua libreria GitHub
   flutterlibrary:

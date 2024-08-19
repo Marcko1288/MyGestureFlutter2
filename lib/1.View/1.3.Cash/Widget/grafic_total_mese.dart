@@ -43,7 +43,7 @@ class GraficTotal extends StatelessWidget {
             ),
             child: Column(
               children: [
-                TextTitle(title: title, size: 5),
+                TextTitle(title: title, size: 25.77),
                 Container(
                   height: SizeConfig.screenHeight! * 0.4,
                   child: BarChartCustom(
