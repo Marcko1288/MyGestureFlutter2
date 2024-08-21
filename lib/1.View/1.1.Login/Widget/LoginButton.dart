@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mygesture/0.Class/0.2.Struct/MasterProvider.dart';
 import 'package:mygesture/0.Class/0.2.Struct/SizeConfig.dart';
 import 'package:mygesture/0.Class/0.2.Struct/ColorsCustom.dart';
 import 'package:mygesture/1.View/1.2.MyHomeView/MyHomeView.dart';
@@ -14,6 +15,7 @@ class _LoginButtonState extends State<LoginButton> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    MasterProvider().init(context);
     return Padding(
       padding: EdgeInsets.fromLTRB(
           SizeConfig.screenWidth! / 20.55,
@@ -51,6 +53,7 @@ class _LoginButtonState extends State<LoginButton> {
             shadowColor: MaterialStateProperty.all(Colors.transparent),
           ),
           onPressed: () {
+            MasterProvider.provider.logIn('email', 'password');
             Navigator.pushReplacement(
                 context, MaterialPageRoute(builder: (context) => MyHomePage()));
           },

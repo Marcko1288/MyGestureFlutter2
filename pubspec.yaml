@@ -13,6 +13,7 @@ dependencies:
   fl_chart: ^0.40.0
   intl: ^0.17.0
   material_segmented_control: ^5.0.1
+  provider: ^6.1.1
 
   # Aggiungi qui la tua libreria GitHub
   flutterlibrary:
