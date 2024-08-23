@@ -5,6 +5,18 @@ class DefaultView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text('Default View');
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Default View'),
+      ),
+      body: Column(
+        children: [
+          Text(
+            'COMING SOON ....',
+            style: TextStyle(fontSize: 100, fontWeight: FontWeight.bold),
+          ),
+        ],
+      ),
+    );
   }
 }

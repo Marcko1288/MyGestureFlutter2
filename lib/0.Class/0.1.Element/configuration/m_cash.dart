@@ -24,21 +24,18 @@ extension Func_MCash on Master {
     int mounth = 0;
     int year = 0;
     int i = 0;
-
-    print('array_cash: ${array_cash.length}');
-
     array_cash.forEach((element) {
-      if (element.data_valore.month != mounth &&
-          element.data_valore.year != year &&
-          i <= limit) {
-        array_output.add(element);
-        mounth = element.data_valore.month;
-        year = element.data_valore.year;
-        i++;
+      if (element.data_valore.year != year ||
+          element.data_valore.month != mounth) {
+        if (i < limit) {
+          array_output.add(element);
+          mounth = element.data_valore.month;
+          year = element.data_valore.year;
+          i++;
+        }
       }
     });
 
-    print('array_output: ${array_output.length}');
     array_output.customSort((element) => element.data_valore, TypeSort.DO);
     return array_output;
   }
@@ -102,9 +99,5 @@ Map<int, Cash> changeListToMap(List<Cash> array_input) {
   for (var i = 0; i < array_input.length; i++) {
     map_output[i] = array_input[i];
   }
-  map_output.forEach((key, value) {
-    print('key: $key : value: $value');
-  });
-
   return map_output;
 }

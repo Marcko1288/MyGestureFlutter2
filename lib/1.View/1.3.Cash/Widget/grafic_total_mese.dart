@@ -9,6 +9,7 @@ import 'package:flutterlibrary/Function/Func_JumpYAss.dart';
 import 'package:flutterlibrary/Extension/Extension_Double.dart';
 import 'package:intl/intl.dart';
 import 'package:mygesture/0.Class/0.3.WidgetCustom/TextTitle.dart';
+import 'package:mygesture/1.View/DefaultView.dart';
 
 class GraficTotal extends StatelessWidget {
   Map<int, Cash> map_cash;
@@ -63,6 +64,15 @@ class GraficTotal extends StatelessWidget {
                     },
                     funcFormatValueAx: (value) {
                       return value.changeDoubleToValuta();
+                    },
+                    navigationTo: (context, index) {
+                      print(
+                          'index: $index, Data: ${map_cash[index]!.data_valore}, Totale: ${map_cash[index]!.totale}');
+
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => DefaultView()),
+                      );
                     },
                     //navigationTo: navigationTo),
                   ),

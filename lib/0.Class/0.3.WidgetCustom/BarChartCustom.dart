@@ -12,19 +12,18 @@ class BarChartCustom extends StatelessWidget {
   String Function(double value) funcFormatY;
   String Function(double index) funcFormatX;
   String Function(double value) funcFormatValueAx;
-  //void Function(BuildContext, int) navigationTo;
+  void Function(BuildContext context, int index) navigationTo;
 
-  BarChartCustom(
-      {required this.array_date,
-      double? maxY,
-      double? minY,
-      double? jumpValueY,
-      required this.funcFormatY,
-      required this.funcFormatX,
-      required this.funcFormatValueAx
-      //required this.navigationTo,
-      })
-      : this.maxY = maxY ?? 1000,
+  BarChartCustom({
+    required this.array_date,
+    double? maxY,
+    double? minY,
+    double? jumpValueY,
+    required this.funcFormatY,
+    required this.funcFormatX,
+    required this.funcFormatValueAx,
+    required this.navigationTo,
+  })  : this.maxY = maxY ?? 1000,
         this.minY = minY ?? 0,
         this.jumpValueY = jumpValueY ?? 10;
 
@@ -72,8 +71,8 @@ class BarChartCustom extends StatelessWidget {
                 response.spot != null &&
                 event is FlTapUpEvent) {
               final index = response.spot!.touchedBarGroupIndex;
-              // navigationTo(context,
-              //     index); // Naviga verso una nuova pagina (DetailPage) quando la barra è cliccata
+              navigationTo(context,
+                  index); // Naviga verso una nuova pagina (DetailPage) quando la barra è cliccata
             }
           },
           touchTooltipData: BarTouchTooltipData(
