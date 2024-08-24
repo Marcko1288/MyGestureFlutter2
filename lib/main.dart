@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mygesture/0.Class/0.1.Element/Master.dart';
-import '1.View/1.1.Login/LoginView.dart';
+import 'X1.View/1.1.Login/LoginView.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());

@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:mygesture/0.Class/0.1.Element/Cash.dart';
+import 'package:mygesture/0.Class/0.1.Element/Cash/Cash.dart';
 import 'package:mygesture/0.Class/0.1.Element/Master.dart';
 import 'package:flutterlibrary/Extension/Extension_List.dart';
 import 'package:flutterlibrary/Enum/Enum_TypeSort.dart';
+import 'package:mygesture/0.Class/0.2.Struct/Es_Array.dart';
 
 extension Func_MCash on Master {
+  void loadDBCash() {
+    this.array_cash = cashList;
+  }
+
   Cash last_value() {
     List<Cash> array_cash = this.array_cash;
 
