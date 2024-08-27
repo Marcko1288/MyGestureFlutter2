@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:mygesture/0.Class/0.2.Struct/ColorsCustom.dart';
-import 'package:mygesture/0.Class/0.2.Struct/SizeConfig.dart';
-import 'package:mygesture/0.Class/0.1.Element/Cash.dart';
+import 'package:mygesture/0.Class/0.2.Configuration/ColorsCustom.dart';
+import 'package:mygesture/0.Class/0.2.Configuration/SizeConfig.dart';
+import 'package:mygesture/0.Class/0.1.Element/0.1.2.cash/cash.dart';
 import 'package:mygesture/0.Class/0.3.WidgetCustom/BarChartCustom.dart';
 import 'package:flutterlibrary/Function/Func_MinMaxObject.dart';
 import 'package:flutterlibrary/Function/Func_JumpYAss.dart';
 import 'package:flutterlibrary/Extension/Extension_Double.dart';
 import 'package:intl/intl.dart';
 import 'package:mygesture/0.Class/0.3.WidgetCustom/TextTitle.dart';
-import 'package:mygesture/1.View/DefaultView.dart';
+import 'package:mygesture/1.View/1.9.Other/DefaultView.dart';
 
 class GraficTotal extends StatelessWidget {
   Map<int, Cash> map_cash;

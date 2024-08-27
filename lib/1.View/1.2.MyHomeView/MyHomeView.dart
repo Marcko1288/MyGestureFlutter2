@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mygesture/0.Class/0.2.Struct/ColorsCustom.dart';
+import 'package:mygesture/0.Class/0.2.Configuration/ColorsCustom.dart';
 import 'package:mygesture/0.Class/0.3.WidgetCustom/AppBarTitle.dart';
 import 'package:mygesture/0.Class/0.3.WidgetCustom/IconLogOut.dart';
 import 'package:mygesture/0.Class/0.3.WidgetCustom/DrawerMenu.dart';
@@ -21,6 +21,8 @@ class _MyHomePageState extends State<MyHomePage> {
     // FavoritePageView(),
     // ProfilePageView(),
   ];
+
+  final title_screen = ['Budget'];
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,7 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
       child: SafeArea(
         top: false,
         child: Scaffold(
-          appBar: AppBarTitle(text: "Budget", icon: IconLogOut()),
+          appBar: AppBarTitle(text: title_screen[index], icon: IconLogOut()),
           extendBody: true,
           backgroundColor: Colors.white,
           drawer: DrawerMenu(),

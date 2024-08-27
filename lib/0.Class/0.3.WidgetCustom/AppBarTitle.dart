@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mygesture/0.Class/0.2.Struct/ColorsCustom.dart';
-import 'package:mygesture/0.Class/0.2.Struct/SizeConfig.dart';
+import 'package:mygesture/0.Class/0.2.Configuration/SizeConfig.dart';
 import 'package:mygesture/0.Class/0.3.WidgetCustom/TextTitle.dart';
 
 class AppBarTitle extends StatelessWidget implements PreferredSizeWidget {
@@ -13,17 +12,13 @@ class AppBarTitle extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return AppBar(
-      centerTitle: true,
-      title: TextTitle(title: text),
-      actions: [
-        if (icon != null)
-          Padding(
-              padding: const EdgeInsets.only(right: 20, top: 8),
-              child: icon,
-            )
-      ]
-    );
+    return AppBar(centerTitle: true, title: TextTitle(title: text), actions: [
+      if (icon != null)
+        Padding(
+          padding: const EdgeInsets.only(right: 20, top: 8),
+          child: icon,
+        )
+    ]);
   }
 
   @override

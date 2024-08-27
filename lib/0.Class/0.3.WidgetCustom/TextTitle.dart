@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mygesture/0.Class/0.2.Struct/SizeConfig.dart';
-import 'package:mygesture/0.Class/0.2.Struct/ColorsCustom.dart';
+import 'package:mygesture/0.Class/0.2.Configuration/SizeConfig.dart';
+import 'package:mygesture/0.Class/0.2.Configuration/ColorsCustom.dart';
 
 class TextTitle extends StatelessWidget {
   String title;
@@ -21,8 +21,6 @@ class TextTitle extends StatelessWidget {
             fontSize: SizeConfig.screenHeight! / size,
             fontWeight: FontWeight.bold),
       ),
-
-      /// 30
       alignment: Alignment.center,
     );
   }

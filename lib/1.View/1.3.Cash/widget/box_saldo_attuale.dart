@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:mygesture/0.Class/0.1.Element/Cash.dart';
-import 'package:mygesture/0.Class/0.2.Struct/MasterProvider.dart';
-
-import 'package:mygesture/0.Class/0.2.Struct/SizeConfig.dart';
+import 'package:mygesture/0.Class/0.1.Element/0.1.2.cash/cash.dart';
+import 'package:mygesture/0.Class/0.2.Configuration/MasterProvider.dart';
+import 'package:mygesture/0.Class/0.2.Configuration/SizeConfig.dart';
 import 'package:mygesture/0.Class/0.3.WidgetCustom/ButtonToView.dart';
 import 'package:mygesture/0.Class/0.3.WidgetCustom/CardBox.dart';
-import 'package:mygesture/1.View/1.2.MyHomeView/MyHomeView.dart';
-import 'package:mygesture/0.Class/0.1.Element/configuration/m_cash.dart';
+import 'package:mygesture/0.Class/0.1.Element/0.1.2.cash/configuration/m_cash.dart';
 import 'package:flutterlibrary/Extension/Extension_Double.dart';
+import 'package:mygesture/1.View/1.9.Other/DefaultView.dart';
 
 class BoxSaldo extends StatefulWidget {
   const BoxSaldo({Key? key}) : super(key: key);
@@ -27,7 +26,7 @@ class _BoxSaldoState extends State<BoxSaldo> {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               String value = snapshot.data as String;
-              return ButtonToView(title: value);
+              return ButtonToView(title: value, widget: DefaultView(),);
             }
             return Container(
               alignment: Alignment.center,

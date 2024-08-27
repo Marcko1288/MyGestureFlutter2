@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mygesture/0.Class/0.2.Struct/SizeConfig.dart';
+import 'package:mygesture/0.Class/0.2.Configuration/SizeConfig.dart';
 
 class ErrorDLView extends StatelessWidget {
   ErrorDLView({Key? key});

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:mygesture/0.Class/0.2.Struct/MasterProvider.dart';
-import 'package:mygesture/0.Class/0.2.Struct/SizeConfig.dart';
-import 'package:mygesture/0.Class/0.3.WidgetCustom/CardBox.dart';
+import 'package:mygesture/0.Class/0.2.Configuration/MasterProvider.dart';
+import 'package:mygesture/0.Class/0.2.Configuration/SizeConfig.dart';
 import 'package:mygesture/0.Class/0.3.WidgetCustom/ButtonToView.dart';
 import 'package:mygesture/1.View/1.3.Cash/Widget/box_grafico.dart';
 import 'package:mygesture/1.View/1.3.Cash/Widget/box_saldo_attuale.dart';
 import 'package:mygesture/0.Class/0.3.WidgetCustom/IconLogOut.dart';
-import 'package:mygesture/0.Class/0.1.Element/configuration/m_cash.dart';
+import 'package:mygesture/0.Class/0.1.Element/0.1.1.master/configuration/m_func.dart';
+import 'package:mygesture/1.View/1.9.Other/DefaultView.dart';
 
 class CashView extends StatefulWidget {
   const CashView({Key? key}) : super(key: key);
@@ -30,7 +30,7 @@ class _CashViewState extends State<CashView> {
               children: [
                 BoxSaldo(),
                 BoxGrafic(),
-                ButtonToView(title: 'Storico'),
+                ButtonToView(title: 'Storico', widget: DefaultView()),
               ],
             );
           } else if (snapshot.hasError) {
@@ -52,6 +52,5 @@ class _CashViewState extends State<CashView> {
 }
 
 Future<bool> bringDB() async {
-  MasterProvider.provider.
   return true;
 }

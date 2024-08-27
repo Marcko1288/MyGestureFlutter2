@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:mygesture/0.Class/0.2.Struct/ColorsCustom.dart';
-import 'package:mygesture/0.Class/0.2.Struct/SizeConfig.dart';
-import 'package:mygesture/0.Class/0.3.WidgetCustom/TextTitle.dart';
+import 'package:mygesture/0.Class/0.2.Configuration/MasterProvider.dart';
+import 'package:mygesture/0.Class/0.1.Element/0.1.1.master/configuration/m_func.dart';
 
 class IconLogOut extends IconButton {
   IconLogOut({Key? key})
       : super(
           key: key,
           onPressed: () {
-            // Auth().signOut();
+            MasterProvider.provider.logOut();
           },
           icon: Icon(Icons.logout),
         );

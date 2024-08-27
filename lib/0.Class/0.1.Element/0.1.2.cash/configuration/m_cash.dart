@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:mygesture/0.Class/0.1.Element/Cash/Cash.dart';
-import 'package:mygesture/0.Class/0.1.Element/Master.dart';
+import 'package:mygesture/0.Class/0.1.Element/0.1.2.cash/cash.dart';
+import 'package:mygesture/0.Class/0.1.Element/0.1.1.master/master.dart';
 import 'package:flutterlibrary/Extension/Extension_List.dart';
 import 'package:flutterlibrary/Enum/Enum_TypeSort.dart';
-import 'package:mygesture/0.Class/0.2.Struct/Es_Array.dart';
+import 'package:mygesture/0.Class/0.1.Element/0.1.9.ex_array/exarray_cash.dart';
 
 extension Func_MCash on Master {
   void loadDBCash() {

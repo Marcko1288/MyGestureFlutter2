@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:mygesture/0.Class/0.2.Struct/SizeConfig.dart';
-import 'package:mygesture/0.Class/0.2.Struct/ColorsCustom.dart';
+import 'package:mygesture/0.Class/0.2.Configuration/SizeConfig.dart';
+import 'package:mygesture/0.Class/0.2.Configuration/ColorsCustom.dart';
 
 class ButtonToView extends StatelessWidget {
   String title;
-  //View view;
+  Widget widget;
 
-  ButtonToView({required this.title}); //, required this.view});
+  ButtonToView({required this.title, required this.widget});
 
   @override
   Widget build(BuildContext context) {
@@ -48,8 +48,10 @@ class ButtonToView extends StatelessWidget {
             shadowColor: MaterialStateProperty.all(Colors.transparent),
           ),
           onPressed: () {
-            // Navigator.pushReplacement(
-            //     context, MaterialPageRoute(builder: (context) => view));
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => widget),
+            );
           },
           child: Text(
             title,

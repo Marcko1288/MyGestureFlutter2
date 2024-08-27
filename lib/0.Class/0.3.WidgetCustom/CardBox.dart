@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mygesture/0.Class/0.2.Struct/ColorsCustom.dart';
-import 'package:mygesture/0.Class/0.2.Struct/SizeConfig.dart';
+import 'package:mygesture/0.Class/0.2.Configuration/ColorsCustom.dart';
+import 'package:mygesture/0.Class/0.2.Configuration/SizeConfig.dart';
 
 class CardBox extends StatelessWidget {
   String text;

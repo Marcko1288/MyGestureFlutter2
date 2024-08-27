@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:mygesture/0.Class/0.2.Struct/ColorsCustom.dart';
-import 'package:mygesture/0.Class/0.2.Struct/SizeConfig.dart';
-import 'package:intl/intl.dart';
+import 'package:mygesture/0.Class/0.2.Configuration/ColorsCustom.dart';
+import 'package:mygesture/0.Class/0.2.Configuration/SizeConfig.dart';
 
 class BarChartCustom extends StatelessWidget {
   List<BarChartGroupData> array_date;
