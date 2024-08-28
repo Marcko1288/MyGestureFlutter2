@@ -6,8 +6,9 @@ import 'package:flutterlibrary/Enum/Enum_TypeSort.dart';
 import 'package:mygesture/0.Class/0.1.Element/0.1.9.ex_array/exarray_cash.dart';
 
 extension Func_MCash on Master {
-  void loadDBCash() {
+  bool loadDBCash() {
     this.array_cash = cashList;
+    return true;
   }
 
   Cash last_value() {

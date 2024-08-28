@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:mygesture/0.Class/0.2.Configuration/MasterProvider.dart';
 import 'package:mygesture/0.Class/0.2.Configuration/SizeConfig.dart';
 import 'package:mygesture/0.Class/0.3.WidgetCustom/ButtonToView.dart';
-import 'package:mygesture/1.View/1.3.Cash/Widget/box_grafico.dart';
-import 'package:mygesture/1.View/1.3.Cash/Widget/box_saldo_attuale.dart';
+import 'package:mygesture/1.View/1.3.Cash/widget/box_grafico.dart';
+import 'package:mygesture/1.View/1.3.Cash/widget/box_saldo_attuale.dart';
 import 'package:mygesture/0.Class/0.3.WidgetCustom/IconLogOut.dart';
-import 'package:mygesture/0.Class/0.1.Element/0.1.1.master/configuration/m_func.dart';
 import 'package:mygesture/1.View/1.9.Other/DefaultView.dart';
+import 'package:mygesture/0.Class/0.1.Element/0.1.2.cash/configuration/m_cash.dart';
 
 class CashView extends StatefulWidget {
   const CashView({Key? key}) : super(key: key);
@@ -52,5 +52,11 @@ class _CashViewState extends State<CashView> {
 }
 
 Future<bool> bringDB() async {
-  return true;
+  bool result = MasterProvider.provider.loadDBCash();
+
+  if (result) {
+    return true;
+  } else {
+    return false;
+  }
 }

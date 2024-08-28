@@ -7,7 +7,7 @@ import 'package:mygesture/0.Class/0.2.Configuration/MasterProvider.dart';
 import 'package:mygesture/0.Class/0.3.WidgetCustom/LoadView.dart';
 import 'package:mygesture/0.Class/0.3.WidgetCustom/ErrorDLView.dart';
 import 'package:mygesture/0.Class/0.3.WidgetCustom/CardBox.dart';
-import 'package:mygesture/1.View/1.3.Cash/Widget/grafic_total_mese.dart';
+import 'package:mygesture/1.View/1.3.Cash/widget/grafic.dart';
 import 'package:material_segmented_control/material_segmented_control.dart';
 
 class BoxGrafic extends StatefulWidget {
@@ -60,7 +60,10 @@ class _BoxGraficState extends State<BoxGrafic> {
                     map_delta = changeListToMap(array_delta) as Map<int, Cash>;
                     return Column(
                       children: [
-                        GraficTotal(map_cash: map_grafic, title: 'Totale'),
+                        GraficTotal(
+                            map_cash: map_grafic,
+                            title: 'Totale',
+                            details: true),
                         GraficTotal(map_cash: map_delta, title: 'Delta'),
                       ],
                     );

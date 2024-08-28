@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mygesture/0.Class/0.2.Configuration/SizeConfig.dart';
 import 'package:mygesture/0.Class/0.3.WidgetCustom/TextTitle.dart';
-import 'package:mygesture/1.View/1.1.Login/Widget/LoginButton.dart';
-import 'package:mygesture/1.View/1.1.Login/Widget/LoginTextField.dart';
+import 'package:mygesture/1.View/1.1.Login/widget/LoginButton.dart';
+import 'package:mygesture/1.View/1.1.Login/widget/LoginTextField.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
