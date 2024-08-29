@@ -2,18 +2,43 @@ import 'package:flutter/material.dart';
 import 'package:mygesture/0.Class/0.2.Configuration/ColorsCustom.dart';
 import 'package:mygesture/0.Class/0.2.Configuration/SizeConfig.dart';
 
-class TextFieldInput extends StatelessWidget {
+class TextFieldInput extends StatefulWidget {
   String text;
   IconData? iconName;
   String? ltext;
-  void Function(String value) onChange;
+  bool enable;
+  //void Function(String value) onChange;
+  final ValueChanged<String> onChange;
   TextFieldInput(
       {required this.text,
       IconData? iconName,
       String? ltext,
+      bool? enable,
       required this.onChange})
       : this.iconName = iconName ?? null,
-        this.ltext = ltext ?? null;
+        this.ltext = ltext ?? null,
+        this.enable = enable ?? true;
+
+  @override
+  State<TextFieldInput> createState() => _TextFieldInputState();
+}
+
+class _TextFieldInputState extends State<TextFieldInput> {
+  late String text;
+  late IconData? iconName;
+  late String? ltext;
+  late bool enable;
+  late void Function(String value) onChange;
+
+  @override
+  void initState() {
+    super.initState();
+    text = widget.text;
+    iconName = widget.iconName;
+    ltext = widget.ltext;
+    enable = widget.enable;
+    //onChange = widget.onChange;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +51,7 @@ class TextFieldInput extends StatelessWidget {
             SizeConfig.screenWidth! / 20.55,
             SizeConfig.screenHeight! / 34.15),
         child: TextField(
+          enabled: enable,
           style: TextStyle(color: textColor),
           cursorColor: textColor,
           decoration: InputDecoration(
@@ -44,7 +70,12 @@ class TextFieldInput extends StatelessWidget {
               hintStyle: TextStyle(color: texthint.withOpacity(0.3)),
               labelText: ltext,
               labelStyle: TextStyle(color: texthint.withOpacity(0.6))),
-          onChanged: (value) => onChange(value),
+          //onChanged: (value) => onChange(value),
+          onChanged: (value) {
+            setState(() {
+              widget.onChange(value);
+            });
+          },
         ),
       ),
     );
