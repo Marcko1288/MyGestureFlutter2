@@ -4,10 +4,16 @@ import 'package:mygesture/0.Class/0.2.Configuration/SizeConfig.dart';
 
 class TextFieldInput extends StatelessWidget {
   String text;
-  IconData iconName;
-  String ltext;
+  IconData? iconName;
+  String? ltext;
+  void Function(String value) onChange;
   TextFieldInput(
-      {required this.text, required this.iconName, required this.ltext});
+      {required this.text,
+      IconData? iconName,
+      String? ltext,
+      required this.onChange})
+      : this.iconName = iconName ?? null,
+        this.ltext = ltext ?? null;
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +44,7 @@ class TextFieldInput extends StatelessWidget {
               hintStyle: TextStyle(color: texthint.withOpacity(0.3)),
               labelText: ltext,
               labelStyle: TextStyle(color: texthint.withOpacity(0.6))),
+          onChanged: (value) => onChange(value),
         ),
       ),
     );

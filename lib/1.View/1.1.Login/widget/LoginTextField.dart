@@ -3,7 +3,9 @@ import 'package:mygesture/0.Class/0.3.WidgetCustom/TextFieldInput.dart';
 import 'package:mygesture/0.Class/0.3.WidgetCustom/TextFieldPassword.dart';
 
 class LoginTextField extends StatefulWidget {
-  const LoginTextField({Key? key}) : super(key: key);
+  void Function(String value) onChangeMail;
+  void Function(String value) onChangePassword;
+  LoginTextField({required this.onChangeMail, required this.onChangePassword});
 
   @override
   _LoginTextFieldState createState() => _LoginTextFieldState();
@@ -21,8 +23,11 @@ class _LoginTextFieldState extends State<LoginTextField> {
             text: "Email",
             iconName: Icons.mail,
             ltext: "Email",
+            onChange: (value) => widget.onChangeMail(value),
           ),
-          TextFieldPassword(),
+          TextFieldPassword(
+            onChange: (value) => widget.onChangePassword(value),
+          ),
         ]));
   }
 }

@@ -6,7 +6,8 @@ import 'package:mygesture/0.Class/0.2.Configuration/ColorsCustom.dart';
 import 'package:mygesture/1.View/1.2.MyHomeView/MyHomeView.dart';
 
 class LoginButton extends StatefulWidget {
-  const LoginButton({Key? key}) : super(key: key);
+  void Function() onPress;
+  LoginButton({required this.onPress});
 
   @override
   _LoginButtonState createState() => _LoginButtonState();
@@ -53,13 +54,7 @@ class _LoginButtonState extends State<LoginButton> {
             backgroundColor: MaterialStateProperty.all(Colors.transparent),
             shadowColor: MaterialStateProperty.all(Colors.transparent),
           ),
-          onPressed: () {
-            bool result = MasterProvider.provider.logIn('email', 'password');
-            if (result) {
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => MyHomePage()));
-            }
-          },
+          onPressed: widget.onPress,
           child: Text(
             "LOGIN",
             style: TextStyle(
