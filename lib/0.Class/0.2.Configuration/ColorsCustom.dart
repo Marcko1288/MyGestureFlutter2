@@ -9,3 +9,5 @@ var titleColor = Color(0xfff29006);
 var texthint = Color(0xFF666666);
 var passiveFavorite = Color(0xFFD9886A);
 var barChartsColor = Color(0xFFFFC971);
+var buttonDeleteColor = Color(0xffff0505);
+var lightDeleteColor = Color(0xffff7171);

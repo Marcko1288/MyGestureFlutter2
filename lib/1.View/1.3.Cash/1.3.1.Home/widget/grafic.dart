@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:flutterlibrary/Enum/Enum_TypeFormatDate.dart';
-import 'package:mygesture/0.Class/0.2.Configuration/ColorsCustom.dart';
-import 'package:mygesture/0.Class/0.2.Configuration/SizeConfig.dart';
-import 'package:mygesture/0.Class/0.1.Element/0.1.2.cash/cash.dart';
-import 'package:mygesture/0.Class/0.3.WidgetCustom/BarChartCustom.dart';
+import 'package:flutterlibrary/Enum/enum_custom.dart';
+import 'package:mygesture/9.Library/configuration.dart';
+import 'package:mygesture/9.Library/cash.dart';
+import 'package:mygesture/9.Library/widget.dart';
 import 'package:flutterlibrary/Function/Func_MinMaxObject.dart';
 import 'package:flutterlibrary/Function/Func_JumpYAss.dart';
-import 'package:flutterlibrary/Extension/Extension_Double.dart';
-import 'package:flutterlibrary/Extension/Extension_Date.dart';
+import 'package:flutterlibrary/Extension/extension_custom.dart';
 import 'package:intl/intl.dart';
-import 'package:mygesture/0.Class/0.3.WidgetCustom/TextTitle.dart';
 import 'package:mygesture/1.View/1.9.Other/DefaultView.dart';
 
 class GraficTotal extends StatelessWidget {

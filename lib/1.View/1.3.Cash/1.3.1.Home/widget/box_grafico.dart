@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mygesture/0.Class/0.2.Configuration/ColorsCustom.dart';
-import 'package:mygesture/0.Class/0.2.Configuration/SizeConfig.dart';
-import 'package:mygesture/0.Class/0.1.Element/0.1.2.cash/cash.dart';
-import 'package:mygesture/0.Class/0.1.Element/0.1.2.cash/configuration/m_cash.dart';
-import 'package:mygesture/0.Class/0.2.Configuration/MasterProvider.dart';
-import 'package:mygesture/0.Class/0.3.WidgetCustom/LoadView.dart';
-import 'package:mygesture/0.Class/0.3.WidgetCustom/ErrorDLView.dart';
-import 'package:mygesture/0.Class/0.3.WidgetCustom/CardBox.dart';
-import 'package:mygesture/1.View/1.3.Cash/widget/grafic.dart';
+import 'package:mygesture/9.Library/configuration.dart';
+import 'package:mygesture/9.Library/cash.dart';
+import 'package:mygesture/9.Library/widget.dart';
 import 'package:material_segmented_control/material_segmented_control.dart';
 
 class BoxGrafic extends StatefulWidget {

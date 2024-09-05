@@ -1,13 +1,11 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:mygesture/0.Class/0.2.Configuration/MasterProvider.dart';
-import 'package:mygesture/0.Class/0.1.Element/0.1.1.master/configuration/m_func.dart';
-import 'package:mygesture/0.Class/0.2.Configuration/SizeConfig.dart';
-import 'package:mygesture/0.Class/0.3.WidgetCustom/TextTitle.dart';
-import 'package:mygesture/1.View/1.1.Login/widget/LoginButton.dart';
-import 'package:mygesture/1.View/1.1.Login/widget/LoginTextField.dart';
-import 'package:mygesture/1.View/1.2.MyHomeView/MyHomeView.dart';
+import 'package:mygesture/9.Library/configuration.dart';
+import 'package:mygesture/9.Library/widget.dart';
+import 'package:mygesture/9.Library/master.dart';
+import 'package:mygesture/9.Library/login.dart';
+import 'package:mygesture/9.Library/myhome.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);

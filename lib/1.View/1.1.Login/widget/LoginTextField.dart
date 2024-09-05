@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mygesture/0.Class/0.3.WidgetCustom/TextFieldInput.dart';
-import 'package:mygesture/0.Class/0.3.WidgetCustom/TextFieldPassword.dart';
+import 'package:mygesture/9.Library/widget.dart';
 
 class LoginTextField extends StatefulWidget {
   void Function(String value) onChangeMail;

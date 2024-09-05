@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mygesture/0.Class/0.1.Element/0.1.1.master/master.dart';
-import '1.View/1.1.Login/LoginView.dart';
+import 'package:mygesture/9.Library/master.dart';
+import 'package:mygesture/9.Library/login.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';

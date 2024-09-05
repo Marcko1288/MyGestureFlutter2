@@ -1,25 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:mygesture/9.Library/configuration.dart';
+import 'package:mygesture/0.Class/0.2.Configuration/SizeConfig.dart';
+import 'package:mygesture/0.Class/0.2.Configuration/ColorsCustom.dart';
 
-class LoginButton extends StatefulWidget {
+class ButtonToDelete extends StatelessWidget {
+  String title;
   void Function() onPress;
-  LoginButton({required this.onPress});
 
-  @override
-  _LoginButtonState createState() => _LoginButtonState();
-}
+  ButtonToDelete({required this.title, required this.onPress});
 
-class _LoginButtonState extends State<LoginButton> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    MasterProvider().init(context);
     return Padding(
       padding: EdgeInsets.fromLTRB(
           SizeConfig.screenWidth! / 20.55,
-          SizeConfig.screenHeight! / 68.3,
+          SizeConfig.screenHeight! / 28.3,
           SizeConfig.screenWidth! / 20.55,
-          SizeConfig.screenHeight! / 34.15),
+          SizeConfig.screenHeight! / 54.15),
       child: Container(
         decoration: BoxDecoration(
           boxShadow: [
@@ -31,8 +28,8 @@ class _LoginButtonState extends State<LoginButton> {
             end: Alignment.centerRight,
             stops: [0.0, 1.0],
             colors: [
-              buttonColor,
-              lightColor,
+              lightDeleteColor,
+              buttonDeleteColor,
             ],
           ),
           borderRadius: BorderRadius.circular(30),
@@ -50,9 +47,11 @@ class _LoginButtonState extends State<LoginButton> {
             backgroundColor: MaterialStateProperty.all(Colors.transparent),
             shadowColor: MaterialStateProperty.all(Colors.transparent),
           ),
-          onPressed: widget.onPress,
+          onPressed: () {
+            onPress;
+          },
           child: Text(
-            "LOGIN",
+            title,
             style: TextStyle(
               fontSize: SizeConfig.screenHeight! / 42.68,
               fontWeight: FontWeight.w700,
