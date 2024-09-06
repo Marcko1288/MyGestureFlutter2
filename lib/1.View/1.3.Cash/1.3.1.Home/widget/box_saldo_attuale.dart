@@ -18,14 +18,15 @@ class _BoxSaldoState extends State<BoxSaldo> {
     SizeConfig().init(context);
     return CardBox(
         text: 'Saldo Attuale',
-        widget: FutureBuilder<String>(
-          future: bringTheFoods(context),
+        widget: FutureBuilder<Cash>(
+          future: loadDBLastValue(context),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              String value = snapshot.data as String;
+              Cash cash = snapshot.data as Cash;
+              String value = cash.totale.changeDoubleToValuta();
               return ButtonToView(
                 title: value,
-                widget: DetCashView(state: TypeState.insert),
+                widget: DetCashView(state: TypeState.read, cash: cash),
               );
             }
             return Container(
@@ -37,8 +38,8 @@ class _BoxSaldoState extends State<BoxSaldo> {
   }
 }
 
-Future<String> bringTheFoods(BuildContext context) async {
+Future<Cash> loadDBLastValue(BuildContext context) async {
   MasterProvider().init(context);
   Cash cash = MasterProvider.provider.last_value();
-  return cash.totale.changeDoubleToValuta();
+  return cash; 
 }

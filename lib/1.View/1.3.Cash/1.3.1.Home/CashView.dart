@@ -23,7 +23,7 @@ class _CashViewState extends State<CashView> {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
           child: FutureBuilder<bool>(
-        future: bringDB(),
+        future: loadDBCash(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return Column(
@@ -51,7 +51,7 @@ class _CashViewState extends State<CashView> {
   }
 }
 
-Future<bool> bringDB() async {
+Future<bool> loadDBCash() async {
   bool result = MasterProvider.provider.loadDBCash();
 
   if (result) {

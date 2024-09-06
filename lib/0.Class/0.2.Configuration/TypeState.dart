@@ -17,4 +17,15 @@ extension ExtTypeState on TypeState {
         return 'Dettaglio';
     }
   }
+
+  bool get state {
+    switch (this) {
+      case TypeState.insert:
+        return true;
+      case TypeState.modify:
+        return true;
+      case TypeState.read:
+        return false;
+    }
+  }
 }

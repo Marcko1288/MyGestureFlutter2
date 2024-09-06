@@ -8,7 +8,6 @@ import 'package:flutterlibrary/Function/Func_MinMaxObject.dart';
 import 'package:flutterlibrary/Function/Func_JumpYAss.dart';
 import 'package:flutterlibrary/Extension/extension_custom.dart';
 import 'package:intl/intl.dart';
-import 'package:mygesture/1.View/1.9.Other/DefaultView.dart';
 
 class GraficTotal extends StatelessWidget {
   Map<int, Cash> map_cash;
@@ -73,10 +72,14 @@ class GraficTotal extends StatelessWidget {
                     },
                     navigationTo: (context, index) {
                       if (details) {
+                        var key = array_date[index].x;
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => DefaultView()),
+                              builder: (context) => DetCashView(
+                                    state: TypeState.read,
+                                    cash: map_cash[key],
+                                  )),
                         );
                       }
                       print(

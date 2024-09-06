@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mygesture/9.Library/cash.dart';
 import 'package:mygesture/9.Library/configuration.dart';
 import 'package:mygesture/9.Library/widget.dart';
@@ -29,14 +30,7 @@ class _DetCashViewState extends State<DetCashView> {
   @override
   void initState() {
     super.initState();
-    cash = widget.cash;
-    state = TypeState.modify; //widget.state;
-    data_valore = cash != null ? cash!.data_valore : DateTime.now();
-    conto = cash != null ? cash!.conto : 0.0;
-    anticipo = cash != null ? cash!.anticipo : 0.0;
-    otherp = cash != null ? cash!.otherp : 0.0;
-    otherm = cash != null ? cash!.otherm : 0.0;
-    totale = cash != null ? cash!.totale : 0.0;
+    refresh();
   }
 
   @override
@@ -46,9 +40,18 @@ class _DetCashViewState extends State<DetCashView> {
     return Scaffold(
         appBar: AppBarTitle(
             text: state.title,
-            icon: iconCustomState(
-              state,
-              () {},
+            icon: IconCustomState(
+              typeState: state,
+              onPressed: () {
+                setState(() {
+                  print('state: ${state.title}');
+                  Cash cash_new = createCash();
+                  actionElement(context, state, cash_new);
+                  state = changeState(state);
+                  //refresh();
+                  print('state: ${state.title}');
+                });
+              },
             )),
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
@@ -62,55 +65,129 @@ class _DetCashViewState extends State<DetCashView> {
                       data_valore = value;
                     });
                   }),
-                  RowTextFieldCustom('Conto', conto.changeDoubleToValuta(),
-                      (value) {
-                    setState(() {
-                      double number = value.changeStringToDouble();
-                      totale = changeTotale(
-                          value: totale, value_old: conto, value_new: number);
-                      conto = number;
-                    });
-                  }),
-                  RowTextFieldCustom('Spesa +', anticipo.changeDoubleToValuta(),
-                      (value) {
-                    setState(() {
-                      double number = value.changeStringToDouble();
-                      totale = changeTotale(
-                          value: totale,
-                          value_old: anticipo,
-                          value_new: number);
-                      anticipo = number;
-                    });
-                  }),
-                  RowTextFieldCustom('Spesa -', otherm.changeDoubleToValuta(),
-                      (value) {
-                    setState(() {
-                      double number = value.changeStringToDouble();
-                      totale = changeTotale(
-                          value: totale,
-                          value_old: otherm,
-                          value_new: number,
-                          invert: true);
-                      otherm = number;
-                    });
-                  }),
                   RowTextFieldCustom(
-                      'Spese \nStraordinarie', otherp.changeDoubleToValuta(),
-                      (value) {
-                    setState(() {
-                      double number = value.changeStringToDouble();
-                      otherp = number;
-                    });
-                  }),
+                    label: 'Conto',
+                    initialValue: conto.changeDoubleToValuta(),
+                    enable: state.state,
+                    keyboardType:
+                        TextInputType.numberWithOptions(decimal: true),
+                    inputFormatters: FilteringTextInputFormatter.allow(
+                        RegExp(r'^\d+\.?\d*')),
+                    onChange: (value) {
+                      setState(() {
+                        double number = value.changeStringToDouble();
+                        totale = changeTotale(
+                            value: totale, value_old: conto, value_new: number);
+                        conto = number;
+                      });
+                    },
+                  ),
+                  RowTextFieldCustom(
+                      label: 'Spesa +',
+                      initialValue: anticipo.changeDoubleToValuta(),
+                      enable: state.state,
+                      keyboardType:
+                          TextInputType.numberWithOptions(decimal: true),
+                      inputFormatters: FilteringTextInputFormatter.allow(
+                          RegExp(r'^\d+\.?\d*')),
+                      onChange: (value) {
+                        setState(() {
+                          double number = value.changeStringToDouble();
+                          totale = changeTotale(
+                              value: totale,
+                              value_old: anticipo,
+                              value_new: number);
+                          anticipo = number;
+                        });
+                      }),
+                  RowTextFieldCustom(
+                      label: 'Spesa -',
+                      initialValue: otherm.changeDoubleToValuta(),
+                      enable: state.state,
+                      keyboardType:
+                          TextInputType.numberWithOptions(decimal: true),
+                      inputFormatters: FilteringTextInputFormatter.allow(
+                          RegExp(r'^\d+\.?\d*')),
+                      onChange: (value) {
+                        setState(() {
+                          double number = value.changeStringToDouble();
+                          totale = changeTotale(
+                              value: totale,
+                              value_old: otherm,
+                              value_new: number,
+                              invert: true);
+                          otherm = number;
+                        });
+                      }),
+                  RowTextFieldCustom(
+                      label: 'Spese \nStraordinarie',
+                      initialValue: otherp.changeDoubleToValuta(),
+                      enable: state.state,
+                      keyboardType:
+                          TextInputType.numberWithOptions(decimal: true),
+                      inputFormatters: FilteringTextInputFormatter.allow(
+                          RegExp(r'^\d+\.?\d*')),
+                      onChange: (value) {
+                        setState(() {
+                          double number = value.changeStringToDouble();
+                          otherp = number;
+                        });
+                      }),
                   RowTextCustom(
                       'Totale', totale.changeDoubleToValuta(), (value) {}),
+                  RowTextFieldCustom(
+                      label: 'Totale 2',
+                      initialValue: totale.changeDoubleToValuta(),
+                      enable: false,
+                      onChange: (value) {}),
                   if (state == TypeState.modify)
                     Center(
-                      child: ButtonToDelete(title: 'Cancella', onPress: () {}),
+                      child: ButtonToDelete(
+                          title: 'Cancella',
+                          onPress: () {
+                            MasterProvider.provider.deleteCash(cash!);
+                          }),
                     )
                 ],
               )),
         ));
+  }
+
+  Cash createCash() {
+    switch (state) {
+      case TypeState.insert:
+        return Cash(
+            data_valore: data_valore,
+            conto: conto,
+            anticipo: anticipo,
+            otherm: otherm,
+            otherp: otherp);
+      case TypeState.modify:
+        Cash cash_new = Cash(
+          data_valore: data_valore != cash!.data_valore
+              ? data_valore
+              : cash!.data_valore,
+          conto: conto != cash!.conto ? conto : cash!.conto,
+          anticipo: anticipo != cash!.anticipo ? anticipo : cash!.anticipo,
+          otherm: otherm != cash!.otherm ? otherm : cash!.otherm,
+          otherp: otherp != cash!.otherp ? otherp : cash!.otherp,
+        );
+        cash = cash_new;
+        return cash_new;
+      case TypeState.read:
+        return cash!;
+    }
+  }
+
+  void refresh() {
+    cash = widget.cash;
+    state = widget.state;
+    data_valore = cash != null ? cash!.data_valore : DateTime.now();
+    conto = cash != null ? cash!.conto : 0.0;
+    anticipo = cash != null ? cash!.anticipo : 0.0;
+    otherp = cash != null ? cash!.otherp : 0.0;
+    otherm = cash != null ? cash!.otherm : 0.0;
+    totale = cash != null ? cash!.totale : 0.0;
   }
 }
 
@@ -128,4 +205,30 @@ double changeTotale(
   value += value_new;
 
   return value;
+}
+
+TypeState changeState(TypeState state) {
+  switch (state) {
+    case TypeState.insert:
+      return TypeState.read;
+    case TypeState.modify:
+      return TypeState.read;
+    case TypeState.read:
+      return TypeState.modify;
+  }
+}
+
+void actionElement(BuildContext context, TypeState state, Cash cash) {
+  MasterProvider().init(context);
+  switch (state) {
+    case TypeState.insert:
+      //Bisogna inserire il nuovo elemento nel DB
+      MasterProvider.provider.insertCash(cash);
+    case TypeState.modify:
+      //Bisogna modificare il nuovo elemento nel DB
+      MasterProvider.provider.modifyCash(cash);
+    case TypeState.read:
+      //Non bisogna fare nessuna azione
+      break;
+  }
 }

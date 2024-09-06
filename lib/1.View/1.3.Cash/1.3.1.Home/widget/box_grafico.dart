@@ -44,7 +44,7 @@ class _BoxGraficState extends State<BoxGrafic> {
                   },
                 )),
             FutureBuilder<Map<int, Cash>>(
-              future: bringGraficMounth(context, selectedSegment),
+              future: loadGrafic(context, selectedSegment),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   map_grafic = snapshot.data as Map<int, Cash>;
@@ -73,7 +73,7 @@ class _BoxGraficState extends State<BoxGrafic> {
   }
 }
 
-Future<Map<int, Cash>> bringGraficMounth(
+Future<Map<int, Cash>> loadGrafic(
     BuildContext context, int selectedSegment) async {
   MasterProvider().init(context);
   Map<int, Cash> map_grafic = {};

@@ -97,6 +97,18 @@ extension Func_MCash on Master {
 
     return array_output;
   }
+
+  bool insertCash(Cash cash) {
+    return true;
+  }
+
+  bool modifyCash(Cash cash) {
+    return true;
+  }
+
+  bool deleteCash(Cash cash) {
+    return true;
+  }
 }
 
 Map<int, Cash> changeListToMap(List<Cash> array_input) {

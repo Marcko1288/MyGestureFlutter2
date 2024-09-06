@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mygesture/0.Class/0.2.Configuration/ColorsCustom.dart';
 import 'package:mygesture/0.Class/0.2.Configuration/SizeConfig.dart';
 
@@ -7,6 +8,9 @@ class TextFieldInput extends StatefulWidget {
   IconData? iconName;
   String? ltext;
   bool enable;
+  TextInputType keyboardType;
+  TextInputFormatter? inputFormatters;
+
   //void Function(String value) onChange;
   final ValueChanged<String> onChange;
   TextFieldInput(
@@ -14,10 +18,14 @@ class TextFieldInput extends StatefulWidget {
       IconData? iconName,
       String? ltext,
       bool? enable,
+      TextInputType? keyboardType,
+      TextInputFormatter? inputFormatters,
       required this.onChange})
       : this.iconName = iconName ?? null,
         this.ltext = ltext ?? null,
-        this.enable = enable ?? true;
+        this.enable = enable ?? true,
+        this.keyboardType = keyboardType ?? TextInputType.none,
+        this.inputFormatters = inputFormatters ?? null;
 
   @override
   State<TextFieldInput> createState() => _TextFieldInputState();
@@ -29,6 +37,8 @@ class _TextFieldInputState extends State<TextFieldInput> {
   late String? ltext;
   late bool enable;
   late void Function(String value) onChange;
+  late TextInputType keyboardType;
+  late List<TextInputFormatter>? inputFormatters;
 
   @override
   void initState() {
@@ -37,7 +47,13 @@ class _TextFieldInputState extends State<TextFieldInput> {
     iconName = widget.iconName;
     ltext = widget.ltext;
     enable = widget.enable;
-    //onChange = widget.onChange;
+    keyboardType = widget.keyboardType;
+
+    if (widget.inputFormatters == null) {
+      inputFormatters = null;
+    } else {
+      inputFormatters = [widget.inputFormatters!];
+    }
   }
 
   @override
@@ -52,6 +68,8 @@ class _TextFieldInputState extends State<TextFieldInput> {
             SizeConfig.screenHeight! / 34.15),
         child: TextField(
           enabled: enable,
+          keyboardType: keyboardType,
+          inputFormatters: inputFormatters,
           style: TextStyle(color: textColor),
           cursorColor: textColor,
           decoration: InputDecoration(
