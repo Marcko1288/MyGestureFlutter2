@@ -4,4 +4,5 @@ export '../0.Class/0.2.Configuration/MasterProvider.dart';
 export '../0.Class/0.2.Configuration/RouteTo.dart';
 export '../0.Class/0.2.Configuration/SizeConfig.dart';
 export '../0.Class/0.2.Configuration/TypeState.dart';
+export '../0.Class/0.2.Configuration/InputDecorationCustom.dart';
 // Aggiungi qui altri widget che desideri esportare

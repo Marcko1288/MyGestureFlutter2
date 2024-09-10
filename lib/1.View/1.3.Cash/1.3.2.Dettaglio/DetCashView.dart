@@ -37,6 +37,8 @@ class _DetCashViewState extends State<DetCashView> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
 
+    print('state: ${state.title}, stato: ${state.state}');
+
     return Scaffold(
         appBar: AppBarTitle(
             text: state.title,
@@ -60,11 +62,15 @@ class _DetCashViewState extends State<DetCashView> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  RowDateCustom('Data Valore', data_valore, (value) {
-                    setState(() {
-                      data_valore = value;
-                    });
-                  }),
+                  RowDateCustom(
+                      label: 'Data Valore',
+                      initialValue: data_valore,
+                      enable: state.state,
+                      onChange: (value) {
+                        setState(() {
+                          data_valore = value;
+                        });
+                      }),
                   RowTextFieldCustom(
                     label: 'Conto',
                     initialValue: conto.changeDoubleToValuta(),
@@ -133,10 +139,10 @@ class _DetCashViewState extends State<DetCashView> {
                           otherp = number;
                         });
                       }),
-                  RowTextCustom(
-                      'Totale', totale.changeDoubleToValuta(), (value) {}),
+                  // RowTextCustom(
+                  //     'Totale', totale.changeDoubleToValuta(), (value) {}),
                   RowTextFieldCustom(
-                      label: 'Totale 2',
+                      label: 'Totale',
                       initialValue: totale.changeDoubleToValuta(),
                       enable: false,
                       onChange: (value) {}),

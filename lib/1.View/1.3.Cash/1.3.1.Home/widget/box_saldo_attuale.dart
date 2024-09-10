@@ -26,7 +26,7 @@ class _BoxSaldoState extends State<BoxSaldo> {
               String value = cash.totale.changeDoubleToValuta();
               return ButtonToView(
                 title: value,
-                widget: DetCashView(state: TypeState.read, cash: cash),
+                widget: DetCashView(state: TypeState.insert, cash: cash),
               );
             }
             return Container(
@@ -41,5 +41,5 @@ class _BoxSaldoState extends State<BoxSaldo> {
 Future<Cash> loadDBLastValue(BuildContext context) async {
   MasterProvider().init(context);
   Cash cash = MasterProvider.provider.last_value();
-  return cash; 
+  return cash;
 }
