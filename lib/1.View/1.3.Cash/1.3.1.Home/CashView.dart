@@ -52,7 +52,7 @@ class _CashViewState extends State<CashView> {
 }
 
 Future<bool> loadDBCash() async {
-  bool result = MasterProvider.provider.loadDBCash();
+  bool result = await MasterProvider.provider.loadDBCash();
 
   if (result) {
     return true;

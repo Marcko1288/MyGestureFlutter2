@@ -26,7 +26,7 @@ class _BoxSaldoState extends State<BoxSaldo> {
               String value = cash.totale.changeDoubleToValuta();
               return ButtonToView(
                 title: value,
-                widget: DetCashView(state: TypeState.insert, cash: cash),
+                widget: DetCashView(state: TypeState.read, cash: cash),
               );
             }
             return Container(

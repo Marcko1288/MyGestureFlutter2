@@ -17,7 +17,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
           children: [
             //Testata
             Container(
-              color: ThemeData().primaryColor,
+              //color: ThemeData().primaryColor,
               padding: EdgeInsets.only(
                   top: 24 + MediaQuery.of(context).padding.top, bottom: 24),
               child: Column(

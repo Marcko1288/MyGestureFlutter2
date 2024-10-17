@@ -74,8 +74,8 @@ class _LoginViewState extends State<LoginView> {
   }
 }
 
-void logIn(BuildContext context, String email, String password) {
-  bool result = MasterProvider.provider.logIn(email, password);
+void logIn(BuildContext context, String email, String password) async {
+  bool result = await MasterProvider.provider.logIn(email, password);
   if (result) {
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => MyHomePage()));

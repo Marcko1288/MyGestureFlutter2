@@ -1,12 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutterlibrary/Firebase/firebase_custom.dart';
 import 'package:mygesture/0.Class/0.1.Element/0.1.2.cash/cash.dart';
 import 'package:mygesture/0.Class/0.1.Element/0.1.1.master/master.dart';
+import 'package:mygesture/0.Class/0.1.Element/0.1.1.master/configuration/m_func.dart';
 import 'package:flutterlibrary/Extension/Extension_List.dart';
 import 'package:flutterlibrary/Enum/Enum_TypeSort.dart';
 import 'package:mygesture/0.Class/0.1.Element/0.1.9.ex_array/exarray_cash.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 extension Func_MCash on Master {
-  bool loadDBCash() {
+  Future<bool> loadDBCash() async {
+    try {
+      this.array_cash.clear();
+      var patch = FireStore().dirDB(db: 'NewMyDB', document: '', value: 'Cash');
+      var result = await FireStore().queryFireStore(patch: patch);
+      result.forEach((element) {
+        var cash = Cash.fromJson(element);
+        this.array_cash.add(cash);
+      });
+    } on FirebaseException catch (error) {
+      print('Estrazione Cash KO');
+      this.gestion_Message(
+          'Estrazione dati Budget in errore. \n ${error.toString()}');
+      notifyListeners();
+      return false;
+    }
+
     this.array_cash = cashList;
     return true;
   }

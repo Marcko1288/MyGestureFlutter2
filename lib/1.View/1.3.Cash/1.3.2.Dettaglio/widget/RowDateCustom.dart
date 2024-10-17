@@ -39,7 +39,6 @@ class _RowDateCustomState extends State<RowDateCustom> {
 
   @override
   Widget build(BuildContext context) {
-    print('State: $enable');
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10),
       child: Row(

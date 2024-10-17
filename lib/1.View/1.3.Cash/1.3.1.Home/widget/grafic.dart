@@ -82,8 +82,6 @@ class GraficTotal extends StatelessWidget {
                                   )),
                         );
                       }
-                      print(
-                          'index: $index, Data: ${map_cash[index]!.data_valore}, Totale: ${map_cash[index]!.totale}');
                     },
                     //navigationTo: navigationTo),
                   ),

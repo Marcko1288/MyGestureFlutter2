@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:mygesture/9.Library/master.dart';
 import 'package:mygesture/9.Library/login.dart';
 import 'package:provider/provider.dart';
-import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await initializeDateFormatting(
-      'it', null); // Inizializza la localizzazione per 'it'
+  await initializeDateFormatting('it', null);
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  ); // Inizializza la localizzazione per 'it'
   runApp(MyApp());
 }
 
@@ -27,6 +30,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           // useMaterial3: false,
           primarySwatch: Colors.blue,
+          primaryColor: Colors.orange,
         ),
         // A widget which will be started on application startup
         home: LoginView(),

@@ -37,8 +37,6 @@ class _DetCashViewState extends State<DetCashView> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
 
-    print('state: ${state.title}, stato: ${state.state}');
-
     return Scaffold(
         appBar: AppBarTitle(
             text: state.title,
@@ -46,12 +44,11 @@ class _DetCashViewState extends State<DetCashView> {
               typeState: state,
               onPressed: () {
                 setState(() {
-                  print('state: ${state.title}');
                   Cash cash_new = createCash();
                   actionElement(context, state, cash_new);
                   state = changeState(state);
-                  //refresh();
-                  print('state: ${state.title}');
+                  update(cash_new, state);
+                  refresh();
                 });
               },
             )),
@@ -169,7 +166,7 @@ class _DetCashViewState extends State<DetCashView> {
             otherm: otherm,
             otherp: otherp);
       case TypeState.modify:
-        Cash cash_new = Cash(
+        return Cash(
           data_valore: data_valore != cash!.data_valore
               ? data_valore
               : cash!.data_valore,
@@ -178,14 +175,18 @@ class _DetCashViewState extends State<DetCashView> {
           otherm: otherm != cash!.otherm ? otherm : cash!.otherm,
           otherp: otherp != cash!.otherp ? otherp : cash!.otherp,
         );
-        cash = cash_new;
-        return cash_new;
       case TypeState.read:
         return cash!;
     }
   }
 
+  void update(Cash cash, TypeState state) {
+    widget.cash = cash;
+    widget.state = state;
+  }
+
   void refresh() {
+    print("refresh");
     cash = widget.cash;
     state = widget.state;
     data_valore = cash != null ? cash!.data_valore : DateTime.now();
