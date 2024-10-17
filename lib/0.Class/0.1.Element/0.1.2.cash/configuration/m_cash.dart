@@ -12,14 +12,15 @@ extension Func_MCash on Master {
   Future<bool> loadDBCash() async {
     try {
       this.array_cash.clear();
-      var patch = FireStore().dirDB(db: 'NewMyDB', document: '', value: 'Cash');
+      var patch = FireStore()
+          .dirDB(db: 'NewMyDB', document: this.partner.uid, value: 'Cash');
       var result = await FireStore().queryFireStore(patch: patch);
       result.forEach((element) {
         var cash = Cash.fromJson(element);
         this.array_cash.add(cash);
       });
     } on FirebaseException catch (error) {
-      print('Estrazione Cash KO');
+      print('Estrazione Budget KO \n ${error.toString()}');
       this.gestion_Message(
           'Estrazione dati Budget in errore. \n ${error.toString()}');
       notifyListeners();
